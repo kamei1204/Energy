@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    min-height: 100vh;
+}
+.energy {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+.energy span {
+    position: absolute;
+    min-height: 100px;
+    width: calc(300px + var(--i));
+    height: calc(300px + var(--i));
+    background: var(--c);
+    border-radius: 50%;
+    /* transform-origin は CSS のプロパティで、要素の座標変換 (transform) における原点を設定します。 */
+    transform-origin: calc(100px + var(--i));
+    animation: animate 5s linear infinite;
+    animation-duration: calc(var(--d));
+    /* mix-blend-mode は CSS のプロパティで、要素の内容物と親要素の内容物や要素の背景をどのように混合するかを設定します。 */
+    /* plus-lighterは2要素がクロスフェードする場合に不透明度が考慮された状態で合成されるので、結果的にクロスフェードが綺麗に表示されます。 */
+    mix-blend-mode: plus-lighter;
+    filter: blur(30px);
+}
+.energy span:nth-child(even) {
+    animation-direction: reverse;
+}
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
